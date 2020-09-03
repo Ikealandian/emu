@@ -61,7 +61,9 @@ void wayland_setup(emu_window* _window)
 
     wl_registry_add_listener(_window->registry, &registry_listener, _window);
 
-    // Wayland connect to compositor
+    // Wayland dispatch
+    wl_display_dispatch(_window->display);
+    wl_display_roundtrip(_window->display);
 }
 
 void wayland_shutdown(emu_window* _window)
