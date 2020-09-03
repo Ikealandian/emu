@@ -10,12 +10,19 @@
 #include <string.h>
 
 #include <X11/X.h>
+#include <X11/Xlib.h>
 
 typedef struct emu_window
 {
     const char* wTitle;
     long wWidth, wHeight;
     long wFlags;
+
+    // X11
+    Display* xDisplay;
+    Window* xRoot;
+    Window* xWindow;
+    int nScreen;
 
 }emu_window;
 
