@@ -20,6 +20,7 @@ typedef struct emu_window
     long wFlags;
 
     // X11
+    XEvent xEvent;
     Display* xDisplay;
     Window* xRoot;
     Window* xWindow;
@@ -103,6 +104,14 @@ emu_window* emu_create_window(const char* _title, long _width, long _height, lon
     }
 
     return eWindow;
+}
+
+void emu_poll_window(emu_window* _window)
+{
+    while (XPending(_window->xDisplay))
+    {
+        XNextEvent(_window->xDisplay, &_window->xEvent);
+    }
 }
 
 void emu_destroy_window(emu_window* _window)
