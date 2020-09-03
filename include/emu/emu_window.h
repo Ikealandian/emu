@@ -14,6 +14,13 @@
 // emu_window structure
 typedef struct emu_window emu_window;
 
+// emu_screen structure
+typedef struct emu_screen
+{
+    unsigned long sIndex;
+    long sWidth, sHeight;
+}emu_screen;
+
 // Create emu_window
 emu_window* emu_create_window(
     const char* _title,
