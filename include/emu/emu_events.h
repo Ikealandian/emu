@@ -18,6 +18,17 @@
 typedef struct emu_event
 {
     long eType;
+
+    union
+    {
+        struct
+        {
+            long Type;
+            char* Message;
+        }DebugMessage;
+        
+    };
+
 }emu_event;
 
 #endif
