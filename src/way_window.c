@@ -26,6 +26,10 @@ typedef struct emu_window
 void wayland_registry_handler
 (void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version)
 {
+    emu_window* window = (emu_window*)data;
+
+    if (strcmp(interface, "wl_compositor") == 0)
+        window->compositor = wl_registry_bind(registry, id, &wl_compositor_interface, 1);
 }
 
 void wayland_registry_remover
