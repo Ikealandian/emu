@@ -43,7 +43,8 @@ void x11_assemble_window(emu_window* _window)
     _window->nScreen = DefaultScreen(_window->xDisplay);
     _window->xRoot = RootWindow(_window->xDisplay, _window->nScreen);
 
-    
+    // Get primary screen
+    Screen* xScreen = ScreenOfDisplay(_window->xDisplay, _window->nScreen);
 
     // Create Window
     _window->xWindow = XCreateSimpleWindow(
