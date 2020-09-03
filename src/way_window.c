@@ -24,7 +24,7 @@ typedef struct emu_window
 }emu_window;
 
 void wayland_registry_handler
-(void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version)
+(void* data, struct wl_registry* registry, uint32_t id, const char* interface, uint32_t version)
 {
     emu_window* window = (emu_window*)data;
 
@@ -33,7 +33,7 @@ void wayland_registry_handler
 }
 
 void wayland_registry_remover
-(void *data, struct wl_registry *registry, uint32_t id)
+(void* data, struct wl_registry* registry, uint32_t id)
 {
 }
 
