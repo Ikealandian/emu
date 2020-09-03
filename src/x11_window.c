@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
@@ -23,8 +22,8 @@ typedef struct emu_window
     XEvent xEvent;
     Screen* xScreen;
     Display* xDisplay;
-    Window* xRoot;
-    Window* xWindow;
+    Window xRoot;
+    Window xWindow;
     int nScreen;
 
 }emu_window;
