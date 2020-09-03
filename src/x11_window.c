@@ -61,6 +61,29 @@ int x11_assemble_window(emu_window* _window)
         return 2;
     }
 
+    // Set Window Title
+    XStoreName(_window->xDisplay, _window->xWindow, _window->wTitle);
+    XSetIconName(_window->xDisplay, _window->xWindow, _window->wTitle);
+
+    // Select Event Masks
+    XSelectInput(
+        _window->xDisplay, _window->xWindow,
+        ExposureMask        |
+        PropertyChangeMask  |
+        StructureNotifyMask |
+        KeyPressMask        |
+        KeyReleaseMask      |
+        PointerMotionMask   |
+        LeaveWindowMask     |
+        EnterWindowMask     |
+        ButtonPressMask     |
+        ButtonReleaseMask   |
+        ButtonMotionMask
+    );
+
+    // Map Window
+    XMapWindow(_window->xDisplay, _window->xWindow);
+
     // Success
     return 0;
 }
