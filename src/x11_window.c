@@ -27,7 +27,7 @@ typedef struct emu_window
 
 }emu_window;
 
-void x11_assemble_window(emu_window* _window)
+int x11_assemble_window(emu_window* _window)
 {
     // xDisplay Open Display
     _window->xDisplay = XOpenDisplay(NULL);
@@ -36,7 +36,7 @@ void x11_assemble_window(emu_window* _window)
     if (!_window->xDisplay)
     {
         fputs("EMU [X11] Window: Could not open display\n", stderr);
-        return;
+        return 1;
     }
 
     // Get Default Screen and Root Window
@@ -53,6 +53,16 @@ void x11_assemble_window(emu_window* _window)
         _window->wWidth, _window->wHeight,
         0, 0, 0x0
     );
+
+    // if xWindow == null 
+    if (!_window->xWindow)
+    {
+        fputs("EMU [X11] Window: XCreateSimpleWindow failed\n", stderr);
+        return 2;
+    }
+
+    // Success
+    return 0;
 }
 
 emu_window* emu_create_window(const char* _title, long _width, long _height, long _flags)
@@ -63,7 +73,11 @@ emu_window* emu_create_window(const char* _title, long _width, long _height, lon
     eWindow->wHeight = _height;
     eWindow->wFlags = _flags;
 
-    x11_assemble_window(eWindow);
+    if (x11_assemble_window(eWindow) != 0)
+    {
+        emu_destroy_window(eWindow);
+        return NULL;
+    }
 
     return eWindow;
 }
