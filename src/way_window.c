@@ -18,8 +18,20 @@ typedef struct emu_window
 
     // Wayland
     struct wl_display* display;
+    struct wl_registry* registry;
+    struct wl_compositor* compositor;
 
 }emu_window;
+
+void wayland_registry_handler
+(void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version)
+{
+}
+
+void wayland_registry_remover
+(void *data, struct wl_registry *registry, uint32_t id)
+{
+}
 
 void wayland_setup(emu_window* _window)
 {
@@ -32,6 +44,20 @@ void wayland_setup(emu_window* _window)
         fputs(stderr, "EMU [Wayland] Window: Can't connect to display");
         return;
     }
+
+    // Wayland get registry from display
+    _window->registry = wl_display_get_registry(_window->display);
+
+    // Add registry listener
+    const struct wl_registry_listener registry_listener =
+    {
+        wayland_registry_handler,
+        wayland_registry_remover
+    };
+
+    wl_registry_add_listener(_window->registry, &registry_listener, _window);
+
+    // Wayland connect to compositor
 }
 
 void wayland_shutdown(emu_window* _window)
