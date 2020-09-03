@@ -46,7 +46,7 @@ void wayland_setup(emu_window* _window)
     // if display == null
     if (!_window->display)
     {
-        fputs("EMU [Wayland] Window: Can't connect to display\n", stderr);
+        fputs("EMU [Wayland] Window: Could not connect to display\n", stderr);
         return;
     }
 
