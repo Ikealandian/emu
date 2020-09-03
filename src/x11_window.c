@@ -21,6 +21,7 @@ typedef struct emu_window
 
     // X11
     XEvent xEvent;
+    Screen* xScreen;
     Display* xDisplay;
     Window* xRoot;
     Window* xWindow;
@@ -45,7 +46,7 @@ int x11_assemble_window(emu_window* _window)
     _window->xRoot = RootWindow(_window->xDisplay, _window->nScreen);
 
     // Get primary screen
-    Screen* xScreen = ScreenOfDisplay(_window->xDisplay, _window->nScreen);
+    _window->xScreen = ScreenOfDisplay(_window->xDisplay, _window->nScreen);
 
     // Create Window
     _window->xWindow = XCreateSimpleWindow(
