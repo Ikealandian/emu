@@ -15,6 +15,7 @@
 typedef struct emu_window
 {
     const char* wTitle;
+    long wX, wY;
     long wWidth, wHeight;
     long wFlags;
 
@@ -43,6 +44,14 @@ void x11_assemble_window(emu_window* _window)
     _window->xRoot = RootWindow(_window->xDisplay, _window->nScreen);
 
     
+
+    // Create Window
+    _window->xWindow = XCreateSimpleWindow(
+        _window->xDisplay, _window->xRoot,
+        _window->wX, _window->wY,
+        _window->wWidth, _window->wHeight,
+        0, 0, 0x0
+    );
 }
 
 emu_window* emu_create_window(const char* _title, long _width, long _height, long _flags)
