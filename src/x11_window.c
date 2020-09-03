@@ -107,6 +107,10 @@ emu_window* emu_create_window(const char* _title, long _width, long _height, lon
 
 void emu_destroy_window(emu_window* _window)
 {    
+    // Destroy Window and Close Display
+    XDestroyWindow(_window->xDisplay, _window->xWindow);
+    XCloseDisplay(_window->xDisplay);
+
     // free emu_window*
     free(_window);
 }
