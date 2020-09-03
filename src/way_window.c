@@ -64,6 +64,13 @@ void wayland_setup(emu_window* _window)
     // Wayland dispatch
     wl_display_dispatch(_window->display);
     wl_display_roundtrip(_window->display);
+
+    // if compositor == null
+    if (!_window->compositor)
+    {
+        fputs(stderr, "EMU [Wayland] Window: Compositor == NULL");
+        return;
+    }
 }
 
 void wayland_shutdown(emu_window* _window)
