@@ -45,7 +45,7 @@ void wayland_setup(emu_window* _window)
     // if display == null
     if (!_window->display)
     {
-        fputs(stderr, "EMU [Wayland] Window: Can't connect to display");
+        fputs("EMU [Wayland] Window: Can't connect to display", stderr);
         return;
     }
 
@@ -68,7 +68,7 @@ void wayland_setup(emu_window* _window)
     // if compositor == null
     if (!_window->compositor)
     {
-        fputs(stderr, "EMU [Wayland] Window: Compositor == NULL");
+        fputs("EMU [Wayland] Window: Compositor == NULL", stderr);
         return;
     }
 }
