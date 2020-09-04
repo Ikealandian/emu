@@ -5,19 +5,10 @@
 #ifndef _EMU_STACK_H_
 #define _EMU_STACK_H_
 
-// emu_stack structure
-typedef struct emu_stack
-{
-    // Data
-    void** Data;
-    unsigned Size;
-    unsigned Capacity;
+// emu_stack
+typedef struct emu_stack emu_stack;
 
-    // Settings
-    unsigned ResizeAmount;
-    unsigned DefaultCapacity; 
 
-}emu_stack;
 
 // Initialize stack data
 void emu_alloc_stack(emu_stack* _stack);
