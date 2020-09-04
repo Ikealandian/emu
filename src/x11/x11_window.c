@@ -2,7 +2,7 @@
 //  Essential Multi-platform Utilities
 
 // X11 Window
-// src/x11_window.c
+// src/x11/x11_window.c
 #include <emu/emu_window.h>
 
 #include <stdlib.h>
