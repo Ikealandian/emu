@@ -25,6 +25,8 @@ EMUOBJ := $(EMUSRC:$(SRC)%.c=$(OBJ)%.o)
 EXMSRC := $(wildcard $(EXAMPLES)*.c)
 EXMOBJ := $(EXMSRC:$(EXAMPLES)%.c=$(BUILD)%.o)
 
+full: clean all
+
 all: $(OBJ) $(EMUOBJ) $(X11OBJ) $(LIB) $(EXMOBJ)
 
 $(OBJ):
