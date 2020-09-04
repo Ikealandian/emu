@@ -92,7 +92,7 @@ void wayland_assemble_window(emu_window* _window)
 
 }
 
-emu_window* emu_create_window(const char* _title, long _width, long _height, long _flags)
+emu_window* emu_window_create(const char* _title, long _width, long _height, emu_stack* _event_stack, long _flags)
 {
     emu_window* eWindow = malloc(sizeof(emu_window));
     eWindow->wTitle = _title;
@@ -106,7 +106,7 @@ emu_window* emu_create_window(const char* _title, long _width, long _height, lon
     return eWindow;
 }
 
-void emu_destroy_window(emu_window* _window)
+void emu_window_destory(emu_window* _window)
 {
     wayland_shutdown(_window);
     
