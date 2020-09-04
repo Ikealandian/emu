@@ -7,7 +7,7 @@
 //  So development for Wayland will be slowed
 
 // Wayland Window
-// src/way_window.c
+// src/wayland/way_window.c
 #include <emu/emu_window.h>
 
 #include <stdlib.h>
