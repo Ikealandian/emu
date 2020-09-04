@@ -8,19 +8,20 @@
 // EMU Events
 
 // Window   0x0
-#define EMU_WINDOW_OPENED   0x01
-#define EMU_WINDOW_CLOSED   0x02
+#define EMU_EVENT_WINDOW_OPENED   0x01
+#define EMU_EVENT_WINDOW_CLOSED   0x02
 
 // Debug    0x1
-#define EMU_DEBUG_MESSAGE   0x11
+#define EMU_EVENT_DEBUG_MESSAGE   0x11
 
 // emu_event structure
 typedef struct emu_event
 {
-    long eType;
+    long Type;
 
     union
     {
+        // Debug Message Event
         struct
         {
             long Type;
