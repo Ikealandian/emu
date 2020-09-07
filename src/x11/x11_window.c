@@ -3,35 +3,7 @@
 
 // X11 Window
 // src/x11/x11_window.c
-#include <emu/emu_window.h>
-
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-
-typedef struct emu_window
-{
-    const char* wTitle;
-    long wX, wY;
-    long wWidth, wHeight;
-    emu_stack* wEventStack;
-    long wFlags;
-
-    // X11
-    XEvent xEvent;
-    Screen* xScreen;
-    Display* xDisplay;
-    Window xRoot;
-    Window xWindow;
-    int nScreen;
-
-    // X11 Atoms
-    Atom WMDeleteWindow;
-
-}emu_window;
+#include "x11_platform.h"
 
 void x11_get_atoms(emu_window* _window)
 {
@@ -135,23 +107,45 @@ void emu_window_poll(emu_window* _window)
         return;
     }
 
+    // uKeyEvent
+    // uButtonEvent
+
     while (XPending(_window->xDisplay))
     {
         XNextEvent(_window->xDisplay, &_window->xEvent);
 
+        XEvent* xEvent = &_window->xEvent;
+        switch (xEvent->type)
+        {
+        // X11 Key Press/Released Events
+        case KeyPress:
+        {
+
+        }
+        case KeyRelease:
+        {
+
+            break;
+        }
+
         // X11 Client Message Event
-        if (_window->xEvent.type == ClientMessage)
+        case ClientMessage:
         {
             XClientMessageEvent* Message = &_window->xEvent.xclient;
 
             // Is window closed event?
             if ((Atom)Message->data.l[0] == _window->WMDeleteWindow)
             {
-                // push message to stack
+                // Push message to stack
                 emu_event emuEventWindowClosed;
                 emuEventWindowClosed.Type = EMU_EVENT_WINDOW_CLOSED;
                 emu_stack_push(_window->wEventStack, emuEventWindowClosed);
             }
+            break;
+        }
+
+        // Unhandled Events
+        default: break;
         }
     }
 }
