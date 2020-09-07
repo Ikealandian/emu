@@ -13,9 +13,9 @@
 
 // Input    0x2
 #define EMU_EVENT_INPUT_KEY         0x21    // Key Event
-#define EMU_EVENT_INPUT_BUTTON      0x21    // Mouse Button Event
-#define EMU_EVENT_INPUT_SCROLL      0x21    // Scroll Wheel Event
-#define EMU_EVENT_INPUT_MOVED       0x21    // Pointer Moved Event
+#define EMU_EVENT_INPUT_BUTTON      0x22    // Mouse Button Event
+#define EMU_EVENT_INPUT_SCROLL      0x24    // Scroll Wheel Event
+#define EMU_EVENT_INPUT_MOVED       0x25    // Pointer Moved Event
 
 // Debug    0x3
 #define EMU_EVENT_DEBUG_MESSAGE     0x31
