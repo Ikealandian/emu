@@ -10,6 +10,7 @@ Essential Multi-Platform Utilities
         - Key Events
         - Char Event
         - Button Events
+        - Scroll Events
         - Pointer:
             - Pointer Enter Window
             - Pointer Left Window
