@@ -20,9 +20,33 @@ Essential Multi-Platform Utilities
         - Maximized
         - Resized
         - Moved
+- Window:
+    - Getters/Setters
+        - Title
+        - Position
+        - Size
+        - Visiblity:
+            - Show Window
+            - Hide Window
+    - Flags:
+        - Minimized
+        - Maximized
+        - Fullscreen
+        - Borderless
+        - No resizing
+        - Centered
+    - Icon
+    - Cursor:
+        - Locking
+        - Confining
+        - Visibility:
+            - Show Cursor
+            - Hide Cursor
 - Graphics:
     - Vulkan
     - OpenGL Context
+    - Simple Renderer:
+        - To be decided
 - Platform:
     - Wayland
     - Windows
