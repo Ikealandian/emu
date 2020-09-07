@@ -54,9 +54,11 @@ typedef struct emu_event
         //  No Event Data
 
         // EMU_EVENT_INPUT_KEY
+        // EMU_EVENT_INPUT_CHAR
         // EMU_EVENT_INPUT_BUTTON
-        emu_ekey        uKeyEvent;
-        emu_ebutton     uButtonEvent;
+        unsigned        uChar;
+        emu_ekey        uKey;
+        emu_ebutton     uButton;
 
         // EMU_EVENT_DEBUG_MESSAGE
         emu_edbgmsg     uDebugMessage;
