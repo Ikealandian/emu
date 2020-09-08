@@ -4,6 +4,7 @@
 // X11 Window
 // src/x11/x11_window.c
 #include "x11_platform.h"
+#include "x11_input.h"
 
 void x11_get_atoms(emu_window* _window)
 {
@@ -110,6 +111,12 @@ void emu_window_poll(emu_window* _window)
     // uKeyEvent
     // uButtonEvent
 
+    // x11_input    .h .c
+    // x11_events   .h .c
+
+    // TODO List:
+    //  https://github.com/Ikealandian/emu/blob/master/README.md
+
     while (XPending(_window->xDisplay))
     {
         XNextEvent(_window->xDisplay, &_window->xEvent);
@@ -118,15 +125,32 @@ void emu_window_poll(emu_window* _window)
         switch (xEvent->type)
         {
         // X11 Key Press/Released Events
+        // EMU_EVENT_INPUT_KEY
         case KeyPress:
-        {
-
-        }
-        case KeyRelease:
-        {
-
+            x11_handle_char(_window);
+            x11_handle_key_press(_window);
             break;
-        }
+        case KeyRelease:
+            x11_handle_key_release(_window);
+            break;
+
+        // X11 Button Press/Released Events
+        // X11 Scroll
+        // EMU_EVENT_INPUT_BUTTON
+        // EMU_EVENT_INPUT_MOVED
+        case ButtonPress:
+            x11_handle_button_press(_window);
+            x11_handle_scroll(_window);
+            break;
+        case ButtonRelease:
+            x11_handle_button_release(_window);
+            break;
+
+        // X11 Pointer Moved
+        // EMU_EVENT_INPUT_MOVED
+        case MotionNotify:
+            x11_handle_moved(_window);
+            break;
 
         // X11 Client Message Event
         case ClientMessage:
