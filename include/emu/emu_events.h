@@ -24,7 +24,7 @@
 // emu_ekey
 typedef struct emu_ekey
 {
-    long Button, Action;
+    long Key, Action;
     long Repeat;
 }emu_ekey;
 
